@@ -1,40 +1,19 @@
-// function printNumbers(from, to) {
-//     let current = from;
+function timeToNewYear (){
+    const now = new Date();
 
-//     let timerId = setInterval(() => {
-//         console.log(current);
-//         if(current === to){
-//             clearInterval(timerId);
+    const nextYear = now.getFullYear() + 1;
+    const newYear = new Date(`January 1, ${nextYear} 00:00:00`);
 
-//         }
-//         current++;
-//     }, 1000);
-// }
+    const timeD = newYear - now;
 
-// printNumbers(1, 10);
+    const days = Math.floor(timeD / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeD % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeD % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeD % (1000 * 60)) / 1000);
 
+    document.getElementById("time-table").textContent = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`
 
-// function printNumbers(from, to){
-//     let current = from;
+    setTimeout(timeToNewYear, 1000)
+}
 
-//     function go(){
-//         console.log(current);
-
-//         if(current < to){
-//             setTimeout(go, 1000);
-//         }
-//         current++;
-//     }
-//     setTimeout(go, 1000)
-// }
-
-// printNumbers(1, 10);
-
-let i = 0;
-
-setTimeout(() => alert(i), 100); // ?
-
-for (let j = 0; j < 100000000; j++) {
-  i++;
-} 
-// функція запуститься після циклу, буде виведено 100000000
+timeToNewYear();
